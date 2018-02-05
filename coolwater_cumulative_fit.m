@@ -10,8 +10,13 @@ y2 = zeros(1,100);
 
 c_p = zeros(1,100);
     
-    for i = 1:numel(files)    
-        filepath = char(strcat(fileroot,'/',files(i).name));
+    for i = 1:numel(files)
+        if(ispc)
+            filepath = char(strcat(fileroot,'\',files(i).name));
+        else
+            filepath = char(strcat(fileroot,'/',files(i).name));
+        end
+
         result = load(filepath);
         
         minimum_peak=5;

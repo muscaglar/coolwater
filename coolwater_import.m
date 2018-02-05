@@ -3,8 +3,13 @@ function [] = coolwater_import(fileroot, files, files_mat)
 % [baseName, folder] = uigetfile({'*.dat';'*.mat';},'CoolWater File Selector');
 % filepath = fullfile(folder, baseName);
 
-    for i = 1:numel(files)    
-        filepath = char(strcat(fileroot,'/',files(i).name));
+    for i = 1:numel(files)
+        if(ispc)
+            filepath = char(strcat(fileroot,'\',files(i).name));
+        else
+            filepath = char(strcat(fileroot,'/',files(i).name));
+        end
+        
         result = coolwater_txt2mat(filepath);
         
         fig_trace = figure;
@@ -18,7 +23,12 @@ function [] = coolwater_import(fileroot, files, files_mat)
         [p, xi, bw] = ksdensity(result(:,2));
         
         name = strsplit(files(i).name,'.')
-        savepath = strcat(fileroot,'/',name(1))
+       
+        if(ispc)
+            savepath = strcat(fileroot,'\',name(1))
+        else
+            savepath = strcat(fileroot,'/',name(1))
+        end
         
         save_trace = char(strcat(savepath,'_trace.png'));
         save_hist = char(strcat(savepath,'_hist.png'));

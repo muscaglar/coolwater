@@ -1,6 +1,6 @@
-function [] = coolwater_cumulative_fit()
+function [] = coolwater_cumulative_fit(fileroot)
 
-fileroot = uigetdir('CoolWater File Selector');
+%fileroot = uigetdir('CoolWater File Selector');
 files = dir(fullfile(fileroot, '*_ksdensity.mat'));
 
 x = [];

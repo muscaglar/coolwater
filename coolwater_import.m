@@ -30,6 +30,9 @@ function [] = coolwater_import(fileroot, files, files_mat)
             savepath = strcat(fileroot,'/',name(1))
         end
         
+%         %Removes spaces from filenames
+%         savepath = savepath{1}(~isspace(savepath{1}));
+        
         save_trace = char(strcat(savepath,'_trace.png'));
         save_hist = char(strcat(savepath,'_hist.png'));
         save_mat = char(strcat(savepath,'.mat'));

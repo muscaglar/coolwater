@@ -9,29 +9,29 @@ files = dir(fullfile(fileroot, '*.dat'));
 files_mat = dir(fullfile(fileroot, '*.mat'));
 %% This checks if the DAT file has a corressponding MAT file and will omit it from analysis.
 
-%     for j = 1:numel(files_mat)
-%         mat_name = strsplit(files_mat(j).name,'.');
-%         mat_name = mat_name(1);
-%         for k = 1:numel(files)
-%             file_name = strsplit(files(k).name,'.');
-%             file_name = file_name(1);
-%             if(strcmp(mat_name,file_name))
-%                remove_id = [remove_id, k];
-%             end
-%         end
-%     end
-keep_mat = [];
-
-for j = 1:numel(files_mat)
-    mat_number = coolwater_getNumber(files_mat(j).name);
-    for k = 1:numel(files)
-        file_number = coolwater_getNumber(files(k).name);
-        if(mat_number==file_number)
-            remove_id = [remove_id, k];
-            keep_mat = [keep_mat, j];
+    for j = 1:numel(files_mat)
+        mat_name = strsplit(files_mat(j).name,'.');
+        mat_name = mat_name(1);
+        for k = 1:numel(files)
+            file_name = strsplit(files(k).name,'.');
+            file_name = file_name(1);
+            if(strcmp(mat_name,file_name))
+               remove_id = [remove_id, k];
+            end
         end
     end
-end
+keep_mat = [];
+
+% for j = 1:numel(files_mat)
+%     mat_number = coolwater_getNumber(files_mat(j).name);
+%     for k = 1:numel(files)
+%         file_number = coolwater_getNumber(files(k).name);
+%         if(mat_number==file_number)
+%             remove_id = [remove_id, k];
+%             keep_mat = [keep_mat, j];
+%         end
+%     end
+% end
 
 
 files(remove_id) = [];

@@ -15,26 +15,31 @@ for i = 1:numel(files)
     end
     load(full_path);
     
-    fig_trace = figure;
-    plot(time(1:length(current)),current);
-    
-    [P, x,y, model_y] = coolwater_alt_process_runPeakFinder(current);
-    
-    fig_hist = figure;
-    plot(x,y);
- 
-    fig_fit_gauss = figure;
-    plot(x,model_y);
-    
     save_trace = char(strcat(savepath,'_trace.png'));
     save_hist = char(strcat(savepath,'_hist_fit.png'));
     save_fit = char(strcat(savepath,'_fit.png'));
     save_P_params = char(strcat(savepath,'_P_params.mat'));
     
+    fig_trace = figure;
+    plot(time(1:length(current)),current);
     saveas(fig_trace,save_trace);
-    saveas(fig_hist,save_hist);
-    saveas(fig_fit_gauss,save_fit);
+    
+    [P, x,y, model_y] = coolwater_alt_process_runPeakFinder(current);
     save(save_P_params,'P');
+    close all;
+    
+    fig_hist = figure;
+    plot(x,y);
+    saveas(fig_hist,save_hist);
+    
+    fig_fit_gauss = figure;
+    plot(x,model_y);
+    saveas(fig_fit_gauss,save_fit);
+    
+    
+    
+    
+    
     
     close all;
 end
@@ -83,7 +88,7 @@ window = 10;
 PeakShape = 1;
 ShowPlots = 1;
 
- P = findpeaksG(x,y,SlopeThreshold,AmpThreshold,smoothwidth,peakgroup,smoothtype)
+P = findpeaksG(x,y,SlopeThreshold,AmpThreshold,smoothwidth,peakgroup,smoothtype)
 %[P] =findpeaksb(x,y,SlopeThreshold,AmpThreshold,smoothwidth,peakgroup,smoothtype,window,PeakShape,extra,NumTrials,AUTOZERO)
 %FPB=findpeaksb3(x,y,SlopeThreshold,AmpThreshold,smoothwidth,peakgroup,smoothtype,PeakShape,extra,NumTrials,AUTOZERO,ShowPlots);
 

@@ -42,9 +42,10 @@ keep_mat_files = files_mat(keep_mat);
 %coolwater_import(fileroot, files, files_mat);
 coolwater_TDMS_import(files);
 
-coolwater_process(keep_mat_files);
+%coolwater_process(keep_mat_files);
+coolwater_alt_process(keep_mat_files);
 
-coolwater_cumulative_fit(fileroot);
+%coolwater_cumulative_fit(fileroot);
 
 
     function [number] = coolwater_getNumber(fName)

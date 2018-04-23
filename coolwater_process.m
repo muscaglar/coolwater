@@ -20,7 +20,7 @@ for i = 1:numel(files)
     
     fig_hist = figure;
     h = histfit(current,100,'kernel');
-    x = get(h(2),'xdata');
+    x = get(h(2),'xdata'); %h(2) is the density curve plot. h(1) is histrogram plot
     y = get(h(2),'ydata');
     
     [p, xi, bw] = ksdensity(current);

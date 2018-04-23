@@ -1,4 +1,4 @@
-function [] = coolwater_TDMS_import(files)
+function [] = coolwater_TDMS_import(fileroot,files)
 
 % [baseName, folder] = uigetfile({'*.dat';'*.mat';},'CoolWater File Selector');
 % filepath = fullfile(folder, baseName);
@@ -6,9 +6,9 @@ voltage = [];
 current = [];
 for i = 1:numel(files)
     if(ispc)
-        filepath = char(strcat(files(i).folder,'\',files(i).name));
+        filepath = char(strcat(fileroot,'\',files(i).name));
     else
-        filepath = char(strcat(files(i).folder,'/',files(i).name));
+        filepath = char(strcat(fileroot,'/',files(i).name));
     end
     
     if(i==1)

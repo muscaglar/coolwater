@@ -28,7 +28,7 @@ for i = 1:numel(files)
     
     save_trace = char(strcat(savepath,'_trace.png'));
     save_hist = char(strcat(savepath,'_hist_fit.png'));
-    save_fit = char(strcat(savepath,'_fit.mat'));
+    save_fit = char(strcat(savepath,'_fit.png'));
     save_P_params = char(strcat(savepath,'_P_params.mat'));
     
     saveas(fig_trace,save_trace);

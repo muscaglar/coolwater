@@ -1,11 +1,11 @@
 %load('test_run.mat');
 
-bin_num = 10000;
+bin_num = 10000; % bins for histrogram 
 
 time = 0:1/100000:2000;
 time = time(1:length(current));
 
-[fil_current] = butterworth(100, 10000,current);
+[fil_current] = butterworth(100, 10000,current);  % filtering 'current' with lowpass at 100Hz. 
 
 plot(fil_current)
 

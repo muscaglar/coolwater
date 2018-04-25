@@ -1,4 +1,4 @@
-function [] = coolwater_TDMS_import(fileroot,files)
+function [] = coolwater_TDMS_import(fileroot,files,kickout)
 
 % [baseName, folder] = uigetfile({'*.dat';'*.mat';},'CoolWater File Selector');
 % filepath = fullfile(folder, baseName);
@@ -22,15 +22,19 @@ for i = 1:numel(files)
             voltage = [voltage, result.Data.MeasuredData(3).Data'];
             current = [current, result.Data.MeasuredData(4).Data'];
         else
+            if(kickout)
             [voltage, current] = coolwater_removeKickOut(voltage,current);
-            coolwater_saveMat(files(i).name,files(i).folder,voltage,current);
+            end
+            coolwater_saveMat(files(i-1).name,files(i-1).folder,voltage,current);
             result = convertTDMS(0,filepath);
             voltage = result.Data.MeasuredData(3).Data';
             current = result.Data.MeasuredData(4).Data';
         end
     end
     if(i==numel(files))
+        if(kickout)
         [voltage, current] = coolwater_removeKickOut(voltage,current);
+        end
         coolwater_saveMat(files(i).name,files(i).folder,voltage,current);
     end
 end

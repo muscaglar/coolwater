@@ -39,7 +39,7 @@ files(remove_id) = [];
 keep_mat = sort(unique(keep_mat));
 keep_mat_files = files_mat(keep_mat);
 %coolwater_import(fileroot, files, files_mat);
-coolwater_TDMS_import(fileroot,files);
+coolwater_TDMS_import(fileroot,files,1);
 
 %coolwater_process(keep_mat_files);
 coolwater_alt_process(keep_mat_files);

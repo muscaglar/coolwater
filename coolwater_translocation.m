@@ -87,6 +87,6 @@ end
 
 [good_translocations] = coolwater_see_translocations(all_translocations);
 
-[mean_drop(i),time_drop(i),ecds(i)] = coolwater_ECD(good_translocations);
+[mean_drop,time_drop,ecds] = coolwater_ECD(good_translocations);
 
 end

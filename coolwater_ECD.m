@@ -1,4 +1,4 @@
-function [mean_drop(i),time_drop(i),ecds(i)] = coolwater_ECD(good_translocations)
+function [mean_drop,time_drop,ecds] = coolwater_ECD(good_translocations)
 
 ecds = [];
 mean_drop = [];

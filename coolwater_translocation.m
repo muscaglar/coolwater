@@ -1,7 +1,7 @@
 function [good_translocations,ecds] = coolwater_translocation(fileroot,files)
 
 % fileroot = uigetdir('CoolWater Mat File Selector');
-% 
+%
 % files = dir(fullfile(fileroot, '*.mat'));
 trans = 1;
 
@@ -25,23 +25,17 @@ for j = 1:length(files)
     time = time(1:length(current));
     fil_current = butterworth_filter(300,100e3, current,'low');
     
-%     [b,a] = butter(6,[32e3/(100e3/2) 40e3/(100e3/2)],'stop');
-%     notch_current = filtfilt(b,a,current);
-%     [b,a] = butter(1,[15/(100e3/2) 25/(100e3/2)],'stop');
-%     notch_current = filtfilt(b,a,notch_current);
-%     
-%     wo = 50/(100e3/2);  bw = wo/35;
-%     [b,a] = iirnotch(wo,bw);
+    %     [b,a] = butter(6,[32e3/(100e3/2) 40e3/(100e3/2)],'stop');
+    %     notch_current = filtfilt(b,a,current);
+    %     [b,a] = butter(1,[15/(100e3/2) 25/(100e3/2)],'stop');
+    %     notch_current = filtfilt(b,a,notch_current);
+    %
+    %     wo = 50/(100e3/2);  bw = wo/35;
+    %     [b,a] = iirnotch(wo,bw);
     
-%   notch_current = butterworth_filter(30e3,100e3, current,'low');
+    %   notch_current = butterworth_filter(30e3,100e3, current,'low');
     
-    [TF,P] = islocalmin(fil_current);
-    
-    for x = 1:length(TF)
-        if(P(x)<0.006)
-            TF(x) = 0;
-        end
-    end
+    [TF,P] = islocalmin(fil_current,'MinProminence',0.008);
     
     padValue= 125;
     

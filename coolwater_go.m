@@ -1,6 +1,5 @@
 function [] = coolwater_go()
 
-
 %% Altering the code to handle a directory input with multiple TDMS files.
 
 fileroot = uigetdir('CoolWater File Selector');

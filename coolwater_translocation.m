@@ -1,4 +1,4 @@
-function [good_translocations,ecds] = coolwater_translocation(fileroot,files)
+function [good_translocations,ecds,all_translocations] = coolwater_translocation(fileroot,files)
 
 % fileroot = uigetdir('CoolWater Mat File Selector');
 %
@@ -21,9 +21,12 @@ for j = 1:length(files)
     
     load(filepath);
     
-    time = 0:1/100000:2000;
+     current = current(current>0);
+     current(current>(mean(current)*1.2))= [];
+    
+    time = 0:1/150000:2000;
     time = time(1:length(current));
-    fil_current = butterworth_filter(300,100e3, current,'low');
+    fil_current = butterworth_filter(5e3,150e3, current,'low');
     
     %     [b,a] = butter(6,[32e3/(100e3/2) 40e3/(100e3/2)],'stop');
     %     notch_current = filtfilt(b,a,current);
@@ -35,9 +38,9 @@ for j = 1:length(files)
     
     %   notch_current = butterworth_filter(30e3,100e3, current,'low');
     
-    [TF,P] = islocalmin(fil_current,'MinProminence',0.008);
-    
-    padValue= 125;
+    [TF,P] = islocalmin(fil_current,'MinProminence',0.6);
+    plot(time,current,time(TF),current(TF),'r*');
+    padValue= 100;
     
     for i = 1:length(TF)-1
         if(TF(i)== 1 && TF(i-1)==0)

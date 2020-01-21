@@ -1,5 +1,5 @@
 function [mean_drop,time_drop,area] = coolwater_crude_drop(data,time)
-current_trans = smooth(data(:,1));
+current_trans = smooth(data);
 
 time_short = time(1:length(current_trans));
 

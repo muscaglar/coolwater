@@ -1,4 +1,4 @@
-function [good_translocations,ecds] = coolwater_translocation_analysis(varargin)
+function [good_translocations,ecds,all_translocations] = coolwater_translocation_analysis(varargin)
 
 %Currently, TDMS files must be present in the directory to run this
 %analysis. Once Mat files are generated alongside the TDMS files, they need
@@ -19,6 +19,6 @@ if isempty(varargin)
 else
     keep_mat_files = dir(fullfile(fileroot, '*.mat'));
 end
-[good_translocations,ecds] = coolwater_translocation(fileroot,keep_mat_files);
+[good_translocations,ecds,all_translocations] = coolwater_translocation(fileroot,keep_mat_files);
 
 end

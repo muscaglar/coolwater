@@ -6,8 +6,9 @@ time_drop = [];
 
 for i=1:length(good_translocations)
     data = good_translocations(i);
-    time = data(:,2);
-    [mean_drop(i),time_drop(i),ecds(i)]=coolwater_crude_drop(data,time);
+    time = data(2,:);
+    current = data(1,:);
+    [mean_drop(i),time_drop(i),ecds(i)]=coolwater_crude_drop(current,time);
     %ecds(i) = coolwater_integrate(data);
 end
 
